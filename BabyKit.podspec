@@ -68,10 +68,10 @@ s.subspec 'BBCategory' do |category|
     category.public_header_files = 'BabyKit/BBCategory/*.h'
 end
 
-s.subspec 'BBCommonView' do |view|
+s.subspec 'BBView' do |view|
     view.ios.deployment_target = '8.0'
-    view.source_files = 'BabyKit/BBCommonView/*.{h,m}'
-    view.public_header_files = 'BabyKit/BBCommonView/*.h'
+    view.source_files = 'BabyKit/BBView/*.{h,m}'
+    view.public_header_files = 'BabyKit/BBView/*.h'
 end
 
 # ==========================================================================================

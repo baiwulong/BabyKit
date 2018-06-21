@@ -1,12 +1,12 @@
 //
-//  BBPodForUtils.h
+//  BBPodTool.h
 //  Pods
 //
 //  Created by li hua on 2016/6/5.
 //
 
-#ifndef BBPodForUtils_h
-#define BBPodForUtils_h
+#ifndef BBPodTool_h
+#define BBPodTool_h
 
 
 
@@ -27,4 +27,4 @@
 #import "BBRetainCycleManager.h"///< 基于FBRetainCycleDetector封装的,检测某个类是否有循环引用问题
 #import "BBKeyboardManager.h"   ///< 基于IQKeyboardManager封装的
 
-#endif /* BBPodForUtils_h */
+#endif /* BBPodTool_h */

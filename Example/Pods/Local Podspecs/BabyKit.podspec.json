@@ -61,12 +61,12 @@
       "public_header_files": "BabyKit/BBCategory/*.h"
     },
     {
-      "name": "BBCommonView",
+      "name": "BBView",
       "platforms": {
         "ios": "8.0"
       },
-      "source_files": "BabyKit/BBCommonView/*.{h,m}",
-      "public_header_files": "BabyKit/BBCommonView/*.h"
+      "source_files": "BabyKit/BBView/*.{h,m}",
+      "public_header_files": "BabyKit/BBView/*.h"
     },
     {
       "name": "BBPodManager",

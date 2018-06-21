@@ -1,17 +1,16 @@
 //
-//  TMKit.h
+//  BabyKit.h
 //  Pods
 //
 //  Created by li hua on 2016/6/5.
 //
 
-#ifndef TMKit_h
-#define TMKit_h
+#ifndef BabyKit_h
+#define BabyKit_h
 
-#import "TMHelper.h"        ///<常用帮助工具类
-#import "TMPodManager.h"    ///<常用Pod封装
-#import "TMCategory.h"      ///<常用自定义类别
-#import "TMMacros.h"        ///<常用自定义宏
-#import "TMCommonView.h"    ///<常用自定义视图
+#import "BBHelper.h"        ///<常用帮助工具类(系统类封装)
+#import "BBPodManager.h"    ///<常用Pod封装
+#import "BBCategory.h"      ///<常用自定义类别
+#import "BBView.h"          ///<常用自定义视图
 
-#endif /* TMKit_h */
+#endif /* BabyKit_h */

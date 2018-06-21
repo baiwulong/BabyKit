@@ -9,7 +9,7 @@
 #define BBHelper_h
 
 #import "BBToolsHelper.h"
-#import "TMUIHelper.h"
+#import "BBUIHelper.h"
 
 
 #endif /* BBHelper_h */

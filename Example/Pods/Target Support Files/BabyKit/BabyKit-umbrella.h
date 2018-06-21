@@ -13,9 +13,6 @@
 #import "BabyKit.h"
 #import "BBCategory.h"
 #import "NSObject+BabyKit.h"
-#import "BBCommonView.h"
-#import "BBGridView.h"
-#import "BBGuidePageView.h"
 #import "BBHelper.h"
 #import "BBFileHelper.h"
 #import "BBMathHelper.h"
@@ -36,6 +33,9 @@
 #import "BBPodUI.h"
 #import "BBShowManager.h"
 #import "BBToastManager.h"
+#import "BBGridView.h"
+#import "BBGuidePageView.h"
+#import "BBView.h"
 
 FOUNDATION_EXPORT double BabyKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char BabyKitVersionString[];

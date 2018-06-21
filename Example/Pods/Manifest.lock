@@ -1,11 +1,10 @@
 PODS:
   - BabyKit (0.1.0):
     - BabyKit/BBCategory (= 0.1.0)
-    - BabyKit/BBCommonView (= 0.1.0)
     - BabyKit/BBHelper (= 0.1.0)
     - BabyKit/BBPodManager (= 0.1.0)
+    - BabyKit/BBView (= 0.1.0)
   - BabyKit/BBCategory (0.1.0)
-  - BabyKit/BBCommonView (0.1.0)
   - BabyKit/BBHelper (0.1.0):
     - BabyKit/BBHelper/BBToolsHelper (= 0.1.0)
     - BabyKit/BBHelper/BBUIHelper (= 0.1.0)
@@ -29,6 +28,7 @@ PODS:
     - JPFPSStatus (~> 0.1.1)
     - MBProgressHUD (~> 1.1.0)
     - MJRefresh (~> 3.1.15.3)
+  - BabyKit/BBView (0.1.0)
   - CocoaLumberjack (3.4.2):
     - CocoaLumberjack/Default (= 3.4.2)
     - CocoaLumberjack/Extensions (= 3.4.2)
@@ -59,7 +59,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BabyKit: 901ff05ad5dad63e490ee95f9f0d6026a2bdf213
+  BabyKit: e4a9837f5c5064d79d777c4fffc045bb2503ae13
   CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   CTMediator: 4cbf8ede42efc6b31715be88b78bdc9d94efa840
