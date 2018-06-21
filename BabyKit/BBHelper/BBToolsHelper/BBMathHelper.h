@@ -1,0 +1,18 @@
+//
+// BBMathHelper.h
+//  Pods
+//
+//  Created by li hua on 2016/6/14.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface BBMathHelper : NSObject
+
+///角度转弧度
+float MathDegreesToRadian(float angle);
+///弧度转角度
+float MathRadianToDegrees(float radian);
+
+
+@end

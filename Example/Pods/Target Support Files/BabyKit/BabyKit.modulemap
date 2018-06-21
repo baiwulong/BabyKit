@@ -1,0 +1,6 @@
+framework module BabyKit {
+  umbrella header "BabyKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
