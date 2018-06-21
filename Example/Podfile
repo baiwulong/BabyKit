@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BabyKit_Example' do
+  pod 'BabyKit', :path => '../'
+
+  target 'BabyKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
