@@ -2,7 +2,7 @@
 //  BBKeyboardManager.h
 //  BabyKit
 //
-//  Created by li hua on 2016/6/20.
+//  Created by li hua on 2017/6/20.
 //
 
 #import <Foundation/Foundation.h>

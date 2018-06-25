@@ -136,7 +136,6 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/BabyKit/BabyKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CRToast/CRToast.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/CTMediator/CTMediator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework"
@@ -147,12 +146,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MLeaksFinder/MLeaksFinder.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/BabyKit/BabyKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CRToast/CRToast.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/CTMediator/CTMediator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework"
@@ -163,7 +160,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MLeaksFinder/MLeaksFinder.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

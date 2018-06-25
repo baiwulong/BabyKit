@@ -2,7 +2,7 @@
 //  BBMathHelper.m
 //  Pods
 //
-//  Created by li hua on 2016/6/14.
+//  Created by li hua on 2017/6/14.
 //
 
 #import "BBMathHelper.h"

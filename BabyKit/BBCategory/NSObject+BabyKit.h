@@ -2,13 +2,13 @@
 //  NSObject+BabyKit.h
 //  BabyKit
 //
-//  Created by li hua on 2016/6/20.
+//  Created by li hua on 2017/6/20.
 //
 
 #import <Foundation/Foundation.h>
 
 
-
+NS_ASSUME_NONNULL_BEGIN
 
 
 /**
@@ -19,7 +19,7 @@
 
 #pragma mark - NSObject Category - Getter
 
-@interface NSObject (Get)
+@interface NSObject (GetInfo)
 
 /**
  * 转换为非nil字符串，处理string/NSNumber，其他的都默认返回@"",(常用于处理服务器返回的Null/NSNumber/string等数据);
@@ -99,119 +99,10 @@
 
 
 
-
-
-/**
- --------------------------------------------------------------
- `NSString (BoundSize)`计算获取文本高度
- --------------------------------------------------------------
- */
-
-#pragma mark - NSString Category
-
-@interface NSString (StringSize)
-
-/**
- * 计算文本高度，width：最大宽度（根据这个限制来计算高度）
- */
--(CGSize)stringMaxWidth:(CGFloat)width fontSize:(CGFloat)fontSize;
-
-@end
-
-
-
-
-/**
- --------------------------------------------------------------
- `UIGestureRecognizer (TMKit)`手势分类
- --------------------------------------------------------------
- */
-
-#pragma mark - UIGestureRecognizer Category
-
-@interface UIGestureRecognizer (Gesture)
-
-/// 手势处理block属性
-@property (nonatomic, copy) void (^gestureHandler)(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location);
-/// 手势延时间隔
-@property (nonatomic,assign) NSTimeInterval gestureDelay;
-
-/// 手势创建
-+ (id)gestureRecognizerWithHandler:(void (^)(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location))block;
-/// 取消手势
-- (void)gestureCancel;
-
-@end
+NS_ASSUME_NONNULL_END
 
 
 
 
 
 
-/**
- --------------------------------------------------------------
- `UIView (View)`获取view的frame相关数值，获取视图控制器等
- --------------------------------------------------------------
- */
-
-#pragma mark - UIView Category
-
-@interface UIView (View)
-
-///位置:x
-@property (nonatomic,assign) CGFloat viewX;
-
-/// 位置:y
-@property (nonatomic,assign) CGFloat viewY;
-
-/// 中心点:x
-@property (nonatomic,assign) CGFloat viewCenterX;
-
-///中心点:y
-@property (nonatomic,assign) CGFloat viewCenterY;
-
-/// 宽:width
-@property (nonatomic,assign) CGFloat viewWidth;
-
-/// 高:height
-@property (nonatomic,assign) CGFloat viewHeight;
-
-/// 大小:CGSize结构
-@property (nonatomic,assign) CGSize viewSize;
-
-/// 位置:CGPoint位置
-@property (nonatomic,assign) CGPoint viewOrigin;
-
-/// 递归获取视图控制器
-@property (nonatomic,strong,readonly) UIViewController *viewContrller;
-
-
-@end
-
-
-
-
-
-/**
- --------------------------------------------------------------
- `UIView (ActionBlock)`view手势事件，遍历子视图等
- --------------------------------------------------------------
- */
-
-#pragma mark - UIView Category (ActionBlock)
-
-@interface UIView (ActionBlock)
-
-/// 单击执行代码块
-- (void)actionTappedBlock:(void (^)(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location))block;
-
-/// 两个手指点击执行代码块
-- (void)actionDoubleTappedBlock:(void (^)(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location))block;
-
-/// 滑动手势
--(void)actionSwipeDirection:(UISwipeGestureRecognizerDirection)direction block:(void (^)(UISwipeGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location))block;
-
-/// 遍历所有的子视图,并为每个子视图执行block代码
-- (void)actionSubviewBlock:(void (^)(UIView *subview))block;
-
-@end

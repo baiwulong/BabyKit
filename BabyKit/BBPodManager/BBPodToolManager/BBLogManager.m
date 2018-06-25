@@ -2,7 +2,7 @@
 //  BBLogManager.m
 //  TMKit
 //
-//  Created by li hua on 2016/6/12.
+//  Created by li hua on 2017/6/12.
 //
 
 #import "BBLogManager.h"

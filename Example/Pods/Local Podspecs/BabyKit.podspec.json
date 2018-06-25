@@ -112,12 +112,6 @@
           "source_files": "BabyKit/BBPodManager/BBPodToolManager/*.{h,m}",
           "public_header_files": "BabyKit/BBPodManager/BBPodToolManager/*.h",
           "dependencies": {
-            "Masonry": [
-              "~> 1.1.0"
-            ],
-            "CTMediator": [
-              "~> 13"
-            ],
             "FMDB": [
               "~> 2.7.2"
             ],

@@ -2,7 +2,7 @@
 //  BBDatabaseManager.m
 //  fmdbDemo1
 //
-//  Created by 黎迅华 on 2016/6/15.
+//  Created by 黎迅华 on 2017/6/15.
 //  Copyright © 2016年 黎迅华. All rights reserved.
 //
 

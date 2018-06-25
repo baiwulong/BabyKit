@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BabyKit'
-  s.version          = '0.1.0'
-  s.summary          = 'BabyKit 一个日常开发实用Objective-C工具包.依赖多个实用Cocoapod依赖库，旨在快速提升开发效率，在实际开发过程中更加顺畅，没有很高大上的技术，就是单纯为了满足日常基本开发需求。'
+  s.version          = '0.1.1'
+  s.summary          = 'BabyKit 一个日常开发实用Objective-C工具包(部分代码参考或直接拷贝第三方框架).依赖多个实用Cocoapod依赖库，旨在快速提升开发效率，在实际开发过程中更加顺畅，没有很高大上的技术，就是单纯为了满足日常基本开发需求。'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -101,8 +101,6 @@ s.subspec 'BBPodManager' do |pod|
         podTool.public_header_files = 'BabyKit/BBPodManager/BBPodToolManager/*.h'
         
         #工具组件
-        podTool.dependency 'Masonry','~> 1.1.0'                           #约束
-        podTool.dependency 'CTMediator','~> 13'                           #组件解耦
         podTool.dependency 'FMDB','~> 2.7.2'                              #FMDB数据库操作
         podTool.dependency 'DateTools','~> 2.0.0'                         #时间日期操作
         podTool.dependency 'IQKeyboardManager', '~> 6.0.3'                #键盘辅助工具类
