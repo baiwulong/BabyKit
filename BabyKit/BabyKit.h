@@ -8,9 +8,22 @@
 #ifndef BabyKit_h
 #define BabyKit_h
 
-#import "BBHelper.h"        ///<常用帮助工具类(系统类封装)
-#import "BBPodManager.h"    ///<常用Pod封装
-#import "BBCategory.h"      ///<常用自定义类别
-#import "BBView.h"          ///<常用自定义视图
+#if __has_include(<BabyKit/BabyKit.h>)
+
+#import <BabyKit/BabyHelper.h>              ///<常用帮助工具类(系统类封装)
+#import <BabyKit/BabyPodHelper.h>           ///<常用Pod封装
+#import <BabyKit/BabyCategory.h>            ///<常用自定义类别
+#import <BabyKit/BabyCustomView.h>          ///<常用自定义视图
+
+#else
+
+#import "BabyHelper.h"                      ///<常用帮助工具类(系统类封装)
+#import "BabyPodHelper.h"                   ///<常用Pod封装
+#import "BabyCategory.h"                    ///<常用自定义类别
+#import "BabyCustomView.h"                  ///<常用自定义视图
+
+#endif
+
+
 
 #endif /* BabyKit_h */

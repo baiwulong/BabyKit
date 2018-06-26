@@ -1,32 +1,28 @@
 PODS:
-  - BabyKit (0.1.0):
-    - BabyKit/BBCategory (= 0.1.0)
-    - BabyKit/BBHelper (= 0.1.0)
-    - BabyKit/BBPodManager (= 0.1.0)
-    - BabyKit/BBView (= 0.1.0)
-  - BabyKit/BBCategory (0.1.0)
-  - BabyKit/BBHelper (0.1.0):
-    - BabyKit/BBHelper/BBToolsHelper (= 0.1.0)
-    - BabyKit/BBHelper/BBUIHelper (= 0.1.0)
-  - BabyKit/BBHelper/BBToolsHelper (0.1.0)
-  - BabyKit/BBHelper/BBUIHelper (0.1.0)
-  - BabyKit/BBPodManager (0.1.0):
-    - BabyKit/BBPodManager/BBPodToolManager (= 0.1.0)
-    - BabyKit/BBPodManager/BBPodUIManager (= 0.1.0)
-  - BabyKit/BBPodManager/BBPodToolManager (0.1.0):
+  - BabyKit (0.1.2):
+    - BabyKit/BabyCategory (= 0.1.2)
+    - BabyKit/BabyCustomView (= 0.1.2)
+    - BabyKit/BabyHelper (= 0.1.2)
+    - BabyKit/BabyPodHelper (= 0.1.2)
+  - BabyKit/BabyCategory (0.1.2)
+  - BabyKit/BabyCustomView (0.1.2)
+  - BabyKit/BabyHelper (0.1.2)
+  - BabyKit/BabyPodHelper (0.1.2):
+    - BabyKit/BabyPodHelper/BabyPodToolHelper (= 0.1.2)
+    - BabyKit/BabyPodHelper/BabyPodUIHelper (= 0.1.2)
+  - BabyKit/BabyPodHelper/BabyPodToolHelper (0.1.2):
     - CocoaLumberjack (~> 3.4.1)
     - DateTools (~> 2.0.0)
     - FBRetainCycleDetector (~> 0.1.4)
     - FMDB (~> 2.7.2)
     - IQKeyboardManager (~> 6.0.3)
     - MLeaksFinder (~> 1.0.0)
-  - BabyKit/BBPodManager/BBPodUIManager (0.1.0):
+  - BabyKit/BabyPodHelper/BabyPodUIHelper (0.1.2):
     - CRToast (~> 0.0.9)
     - DZNEmptyDataSet (~> 1.8.1)
     - JPFPSStatus (~> 0.1.1)
     - MBProgressHUD (~> 1.1.0)
     - MJRefresh (~> 3.1.15.3)
-  - BabyKit/BBView (0.1.0)
   - CocoaLumberjack (3.4.2):
     - CocoaLumberjack/Default (= 3.4.2)
     - CocoaLumberjack/Extensions (= 3.4.2)
@@ -55,7 +51,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BabyKit: 37ecf7d28eab651e63b85e7c7349f8fc770b2ee1
+  BabyKit: 0ec3594a33cec7c8fcbf116c848662c3c79c85f6
   CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf

@@ -3,19 +3,13 @@
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.hBBl
+# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
 #
 
 Pod::Spec.new do |s|
   s.name             = 'BabyKit'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'BabyKit 一个日常开发实用Objective-C工具包(部分代码参考或直接拷贝第三方框架).依赖多个实用Cocoapod依赖库，旨在快速提升开发效率，在实际开发过程中更加顺畅，没有很高大上的技术，就是单纯为了满足日常基本开发需求。'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
 TODO: 针对已有的一系列类的demo编写待进行.....
@@ -39,54 +33,44 @@ TODO: 针对已有的一系列类的demo编写待进行.....
 
 # ==========================================================================================
 
-s.subspec 'BBHelper' do |helper|
+s.subspec 'BabyHelper' do |helper|
     helper.ios.deployment_target = '8.0'
-    helper.source_files = 'BabyKit/BBHelper/*.{h,m}'
-    helper.public_header_files = 'BabyKit/BBHelper/*.h'
-    
-    helper.subspec 'BBToolsHelper' do |toolsHelper|
-        toolsHelper.ios.deployment_target = '8.0'
-        toolsHelper.source_files = 'BabyKit/BBHelper/BBToolsHelper/*.{h,m}'
-        toolsHelper.public_header_files = 'BabyKit/BBHelper/BBToolsHelper/*.h'
-    end
-    
-    helper.subspec 'BBUIHelper' do |uiHelper|
-        uiHelper.ios.deployment_target = '8.0'
-        uiHelper.source_files = 'BabyKit/BBHelper/BBUIHelper/*.{h,m}'
-        uiHelper.public_header_files = 'BabyKit/BBHelper/BBUIHelper/*.h'
-    end
-    
+    helper.source_files = 'BabyKit/BabyHelper/*.{h,m}'
+    helper.public_header_files = 'BabyKit/BabyHelper/*.h'
+    helper.xcconfig = {
+        'HEADER_SEARCH_PATHS' => '${PODS_ROOT}'
+    }
 end
 
 
 
 # ==========================================================================================
 
-s.subspec 'BBCategory' do |category|
+s.subspec 'BabyCategory' do |category|
     category.ios.deployment_target = '8.0'
-    category.source_files = 'BabyKit/BBCategory/*.{h,m}'
-    category.public_header_files = 'BabyKit/BBCategory/*.h'
+    category.source_files = 'BabyKit/BabyCategory/*.{h,m}'
+    category.public_header_files = 'BabyKit/BabyCategory/*.h'
 end
 
-s.subspec 'BBView' do |view|
+s.subspec 'BabyCustomView' do |view|
     view.ios.deployment_target = '8.0'
-    view.source_files = 'BabyKit/BBView/*.{h,m}'
-    view.public_header_files = 'BabyKit/BBView/*.h'
+    view.source_files = 'BabyKit/BabyCustomView/*.{h,m}'
+    view.public_header_files = 'BabyKit/BabyCustomView/*.h'
 end
 
 # ==========================================================================================
 
-s.subspec 'BBPodManager' do |pod|
+s.subspec 'BabyPodHelper' do |pod|
     pod.ios.deployment_target = '8.0'
-    pod.source_files = 'BabyKit/BBPodManager/*.{h,m}'
-    pod.public_header_files = 'BabyKit/BBPodManager/*.h'
+    pod.source_files = 'BabyKit/BabyPodHelper/*.{h,m}'
+    pod.public_header_files = 'BabyKit/BabyPodHelper/*.h'
     pod.xcconfig = {
         'HEADER_SEARCH_PATHS' => '${PODS_ROOT}'
     }
-    pod.subspec 'BBPodUIManager' do |podUI|
+    pod.subspec 'BabyPodUIHelper' do |podUI|
         podUI.ios.deployment_target = '8.0'
-        podUI.source_files = 'BabyKit/BBPodManager/BBPodUIManager/*.{h,m}'
-        podUI.public_header_files = 'BabyKit/BBPodManager/BBPodUIManager/*.h'
+        podUI.source_files = 'BabyKit/BabyPodHelper/BabyPodUIHelper/*.{h,m}'
+        podUI.public_header_files = 'BabyKit/BabyPodHelper/BabyPodUIHelper/*.h'
         #UI控件组件
         podUI.dependency 'MJRefresh', '~> 3.1.15.3'                   #刷新控件
         podUI.dependency 'MBProgressHUD','~> 1.1.0'                   #提示文本
@@ -95,10 +79,10 @@ s.subspec 'BBPodManager' do |pod|
         podUI.dependency 'JPFPSStatus', '~> 0.1.1'                      #显示在状态栏FPS帧数
     end
     
-    pod.subspec 'BBPodToolManager' do |podTool|
+    pod.subspec 'BabyPodToolHelper' do |podTool|
         podTool.ios.deployment_target = '8.0'
-        podTool.source_files = 'BabyKit/BBPodManager/BBPodToolManager/*.{h,m}'
-        podTool.public_header_files = 'BabyKit/BBPodManager/BBPodToolManager/*.h'
+        podTool.source_files = 'BabyKit/BabyPodHelper/BabyPodToolHelper/*.{h,m}'
+        podTool.public_header_files = 'BabyKit/BabyPodHelper/BabyPodToolHelper/*.h'
         
         #工具组件
         podTool.dependency 'FMDB','~> 2.7.2'                              #FMDB数据库操作
