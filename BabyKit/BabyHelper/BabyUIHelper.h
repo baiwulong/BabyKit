@@ -50,35 +50,38 @@ typedef NS_ENUM(NSInteger, BabyButtonType){
 @interface BabyUIHelper : NSObject
 
 #pragma mark - C函数快速获取
-
+///角度转弧度
+float BabyDegreesToRadian(float angle);
+///弧度转角度
+float BabyRadianToDegrees(float radian);
 /// 判断是否为 iPhone 5SE
-BOOL isiPhone5SE(void);
+BOOL BabyiPhone5SE(void);
 /// 判断是否为iPhone 6/6s
-BOOL isiPhone6S(void);
+BOOL BabyiPhone6S(void);
 /// 判断是否为iPhone 6Plus/6sPlus
-BOOL isiPhone6Plus(void);
+BOOL BabyiPhone6Plus(void);
 /// 判断是否为iPhoneX
-BOOL isiPhoneX(void);
+BOOL BabyiPhoneX(void);
 /// 系统版本
-CGFloat systemVersion(void);
+CGFloat BabySystemVersion(void);
 
 /// 快速获取主屏幕
-UIWindow *keyWindow(void);
+UIWindow *BabyKeyWindow(void);
 /// 快速获取屏幕宽度
-CGFloat screen(void);
+CGFloat BabyScreen(void);
 /// 快速获取屏幕高度
-CGFloat screenHeight(void);
+CGFloat BabyScreenHeight(void);
 /// 快速设置view圆角
-void viewRadius(UIView *view,float radius);
+void BabyViewRadius(UIView *view,float radius);
 /// 快速设置view圆角
-void viewBorder(UIView *view,float radius,float border,UIColor *borderColor);
+void BabyViewBorder(UIView *view,float radius,float border,UIColor *borderColor);
 /// 获取非空字符串
-NSString *toString(id obj);
+NSString *BabyToString(id obj);
 
 /// 比例宽度，
-CGFloat TMScaleWidth(CGFloat width);
+CGFloat BabyScaleWidth(CGFloat width);
 /// 比例高度，
-CGFloat TMScaleHeight(CGFloat height);
+CGFloat BabyScaleHeight(CGFloat height);
 
 #pragma mark - UI
 

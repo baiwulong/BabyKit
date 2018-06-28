@@ -76,7 +76,7 @@ s.subspec 'BabyPodHelper' do |pod|
         podUI.dependency 'MBProgressHUD','~> 1.1.0'                   #提示文本
         podUI.dependency 'DZNEmptyDataSet','~> 1.8.1'                 #无网络，无数据等空白页设置
         podUI.dependency 'CRToast', '~> 0.0.9'                        #顶部弹窗提示控件
-        podUI.dependency 'JPFPSStatus', '~> 0.1.1'                      #显示在状态栏FPS帧数
+        podUI.dependency 'JPFPSStatus', '~> 0.1.1'                    #显示在状态栏FPS帧数
     end
     
     pod.subspec 'BabyPodToolHelper' do |podTool|
@@ -88,7 +88,8 @@ s.subspec 'BabyPodHelper' do |pod|
         podTool.dependency 'FMDB','~> 2.7.2'                              #FMDB数据库操作
         podTool.dependency 'DateTools','~> 2.0.0'                         #时间日期操作
         podTool.dependency 'IQKeyboardManager', '~> 6.0.3'                #键盘辅助工具类
-        
+        podTool.dependency 'NullSafe', '~> 1.2.3'                         #null数据安全处理
+
         #调试或者系统辅助
         podTool.dependency 'CocoaLumberjack', '~> 3.4.1'                  #日志框架
         podTool.dependency 'FBRetainCycleDetector', '~> 0.1.4'            #Facebook开源的自动检测循环引用问题

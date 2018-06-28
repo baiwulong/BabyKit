@@ -15,7 +15,6 @@ void BabyCycleDetector(id obj){
 
 +(void)retainCycleDetect:(id)obj{
 # if DEBUG
-    NSLog(@"⚠️⚠️⚠️TMKit中使用了MLeaksFinder框架，只在Debug模式下起效，不用担心，假如有循环引用，会弹窗");
     FBRetainCycleDetector *detector = [FBRetainCycleDetector new];
     [detector addCandidate:obj];
     NSSet *retainCycles = [detector findRetainCycles];

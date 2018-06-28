@@ -147,59 +147,70 @@
 
 #pragma mark - C函数快速获取
 
-CGFloat TMScaleHeight(CGFloat height){
+float BabyDegreesToRadian(float angle){
+    return M_PI * (angle) / 180.0;
+}
+
+float BabyRadianToDegrees(float radian){
+    return (radian*180.0)/(M_PI);
+}
+
+CGFloat BabyScaleHeight(CGFloat height){
     return  height * [[UIScreen mainScreen] bounds].size.height/667.0;
 }
 
-CGFloat TMScaleWidth(CGFloat width){
+CGFloat BabyScaleWidth(CGFloat width){
     return  width * [[UIScreen mainScreen] bounds].size.width/375.0;
 }
 
-BOOL isiPhone5SE(void){
+BOOL BabyisiPhone5SE(void){
     return [[UIScreen mainScreen] bounds].size.width == 320.0f && [[UIScreen mainScreen] bounds].size.height == 568.0f;
 }
-BOOL isiPhone6S(void){
+BOOL BabyisiPhone6S(void){
     return [[UIScreen mainScreen] bounds].size.width == 375.0f && [[UIScreen mainScreen] bounds].size.height == 667.0f;
 }
-BOOL isiPhone6Plus(void){
+BOOL BabyisiPhone6Plus(void){
     return  [[UIScreen mainScreen] bounds].size.width == 414.0f && [[UIScreen mainScreen] bounds].size.height == 736.0f;
 }
-BOOL isiPhoneX(void){
+BOOL BabyisiPhoneX(void){
     return ([[UIScreen mainScreen] bounds].size.height == 812.0f) ? YES : NO;
 }
 
 /// 系统版本
-CGFloat systemVersion(void){
+CGFloat BabySystemVersion(void){
     return [[[UIDevice currentDevice] systemVersion] floatValue];
 }
 
 /// 获取非空字符串
-NSString *toString(id obj){
-    if (![obj isKindOfClass:[NSString class]]) {
-        return @"";
+NSString *BabyToString(id obj){
+    if ([obj isKindOfClass:[NSString class]]) {
+        return obj;
+    }else if ([obj isKindOfClass:[NSNumber class]]){
+        NSNumber *number = (NSNumber *)obj;
+        return number.stringValue;
     }
-    return obj;
+    return @"";
 }
 
 /// 快速获取主屏幕
-UIWindow *keyWindow(void){
+UIWindow *BabyKeyWindow(void){
     return [UIApplication sharedApplication].keyWindow;
 }
 /// 快速获取屏幕宽度
-CGFloat screen(void){
+CGFloat BabyScreen(void){
     return [UIScreen mainScreen].bounds.size.width;
 }
 /// 快速获取屏幕高度
-CGFloat screenHeight(void){
+CGFloat BabyScreenHeight(void){
     return [UIScreen mainScreen].bounds.size.height;
 }
 /// 快速设置view圆角
-void viewRadius(UIView *view,float radius){
+void BabyViewRadius(UIView *view,float radius){
     [view.layer setCornerRadius:radius];
     [view.layer setMasksToBounds:YES];
 }
 /// 快速设置view圆角
-void viewBorder(UIView *view,float radius,float border,UIColor *borderColor){
+void BabyViewBorder(UIView *view,float radius,float border,UIColor *borderColor){
     [view.layer setCornerRadius:radius];
     [view.layer setMasksToBounds:YES];
     [view.layer setBorderWidth:border];

@@ -15,7 +15,6 @@
 
 #import <BabyHelper/BabyRegExpHelper.h>
 #import <BabyHelper/BabyFileHelper.h>
-#import <BabyHelper/BabyMathHelper.h>
 
 #else
 
@@ -24,7 +23,6 @@
 
 #import "BabyRegExpHelper.h" //正则匹配类
 #import "BabyFileHelper.h"   //文件管理类
-#import "BabyMathHelper.h"   //数学相关
 
 #endif
 
