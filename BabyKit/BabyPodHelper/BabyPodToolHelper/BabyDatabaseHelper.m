@@ -74,11 +74,24 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
 -(BOOL)createTable:(NSString *)table dictionary:(NSDictionary *)dictionary{
     [self isHadOpenDatabase];
     __block NSMutableArray *muArray = [[NSMutableArray alloc]init];
-    [muArray addObjectsFromArray: [self selectFromTable:table]];
     __block BOOL isNewTable = false;
     __block BOOL isOk = NO;
     [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
         if ([db tableExists:table]) {
+            //查询表数据，保存数据
+            NSString * sql = [NSString stringWithFormat:@"select * from %@",table];
+            FMResultSet * result = [db executeQuery:sql];
+            while (result.next) {
+                NSMutableDictionary *dict  = [[NSMutableDictionary alloc]init];
+                for (NSString *key in result.columnNameToIndexMap.allKeys) {
+                    NSString *valueString = [result stringForColumn:key];
+                    [dict setValue:valueString forKey:key];
+                }
+                [muArray addObject:dict];
+            }
+            [result close];
+            
+            //删除表
             for (int i = 0; i<dictionary.allKeys.count; i++) {
                 NSString *key = dictionary.allKeys[i];
                 if (![db columnExists:key inTableWithName:table]) {
@@ -89,6 +102,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
                 }
             }
         }
+        // 重新创建表
         NSMutableString *muStr = [[NSMutableString alloc]init];
         for (int i = 0; i<dictionary.allKeys.count; i++) {
             NSString *key = dictionary.allKeys[i];
@@ -106,9 +120,10 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
         }
         NSString *sql = [NSString stringWithFormat:@"create table if not exists %@ (rowid integer primary key autoincrement not null default ''%@)",table,muStr];
         isOk = [db executeUpdate:sql];
-
+        
     }];
-
+    
+    // 插入数据
     if (isOk) {
         __block NSMutableArray *newMuArr = [[NSMutableArray alloc]init];
         NSLog(@"\n\n====================================================\n\n✅执行方法:%s\n创建%@表成功\n\n====================================================\n\n",__FUNCTION__,table);
@@ -129,7 +144,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
     }else{
         NSLog(@"\n\n====================================================\n\n❌执行方法:%s\n创建%@表失败\n\n====================================================\n\n",__FUNCTION__,table);
     }
-
+    
     return isOk;
 }
 
@@ -185,6 +200,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
             }
             [muArr addObject:dict];
         }
+        [result close];
     }];
     return muArr;
 }
@@ -214,7 +230,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
  */
 -(BOOL)insertTable:(NSString *)table dictionary:(NSDictionary *)dictionary{
     [self isHadOpenDatabase];
-
+    
     NSMutableString *keyMuStr = [[NSMutableString alloc]init];
     NSMutableString *valueMuStr = [[NSMutableString alloc]init];
     for (int i = 0; i<dictionary.allKeys.count; i++) {
@@ -233,9 +249,23 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
         for (int i = 0; i<dictionary.allValues.count; i++) {
             [muDict setValue:[self toString:dictionary.allValues[i]] forKey:dictionary.allKeys[i]];
         }
-        NSArray *fieldArray = [self fieldInTable:table];
+        
         __block BOOL isOk = NO;
         [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+            if (![db tableExists:table]) {
+                NSLog(@"\n\n====================================================\n\n❌执行方法:%s\n表%@不存在\n\n====================================================\n\n",__FUNCTION__,table);
+                return;
+            }
+            
+            // 获取字段
+            NSMutableArray *fieldArray = [[NSMutableArray alloc]init];
+            FMResultSet *result = [db executeQuery:[NSString stringWithFormat:@"select * from %@",table]];
+            for (int i=0; i<[result columnCount]; i++) {
+                NSString * columnName = [result columnNameForIndex:i];
+                [fieldArray addObject:columnName];
+            }
+            [result close];
+            
             isOk = [db executeUpdate:sql withParameterDictionary:muDict];
             if (isOk) {
                 NSLog(@"\n\n====================================================\n\n✅执行方法:%s\n%@插入数据成功SQL:%@\n\n====================================================\n\n",__FUNCTION__,table,sql);
@@ -273,7 +303,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
  */
 - (void)insertTable:(NSString *)table dictionary:(NSDictionary *)dictionary transaction:(BOOL)transaction{
     [self isHadOpenDatabase];
-
+    
     if (transaction) {
         __block BOOL isOk = NO;
         [self.databaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
@@ -310,7 +340,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
  */
 - (void)insertTable:(NSString *)table dictionaryArray:(NSArray *)dictionaryArray transaction:(BOOL)transaction{
     [self isHadOpenDatabase];
-
+    
     if (transaction) {
         if (transaction) {
             __block BOOL isOk = NO;
@@ -357,7 +387,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
  */
 -(BOOL)deleteFromTable:(NSString *)table{
     [self isHadOpenDatabase];
-
+    
     __block BOOL isOk = NO;
     [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
         NSString * sql = [NSString stringWithFormat:@"delete from %@ where 1",table];
@@ -369,7 +399,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
         }
     }];
     return isOk;
-
+    
 }
 
 /**
@@ -381,15 +411,24 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
     for (NSString *key in dictionary.allKeys) {
         [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
             if (![db tableExists:table]) {
-                 NSLog(@"\n\n====================================================\n\n❌❌❌\n执行方法:%s\n该表(%@)不存在数据库中\n\n====================================================\n\n",__FUNCTION__,table);
+                NSLog(@"\n\n====================================================\n\n❌❌❌\n执行方法:%s\n该表(%@)不存在数据库中\n\n====================================================\n\n",__FUNCTION__,table);
                 return ;
             };
-            NSArray *fieldArray = [self fieldInTable:table];
+            // 获取字段
+            NSMutableArray *fieldArray = [[NSMutableArray alloc]init];
+            FMResultSet *result = [db executeQuery:[NSString stringWithFormat:@"select * from %@",table]];
+            for (int i=0; i<[result columnCount]; i++) {
+                NSString * columnName = [result columnNameForIndex:i];
+                [fieldArray addObject:columnName];
+            }
+            [result close];
+            
+            
             if (![db columnExists:key inTableWithName:table]) {
                 NSLog(@"\n\n====================================================\n\n❌❌❌\n执行方法:%s\n请输入正确的字典key,该字段(%@)不存在数据表中,表字段:%@\n❌❌❌\n\n====================================================\n\n",__FUNCTION__,key,fieldArray);
                 return;
             }
-
+            
         }];
     }
     if (!dictionary) {
@@ -402,7 +441,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
     }
     NSString *whereStr = [str substringToIndex:str.length-3];
     NSString * sql = [NSString stringWithFormat:@"delete from %@ where %@",table,whereStr];
-
+    
     [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
         if ([db tableExists:table]) {
             isOk = [db executeUpdate:sql];
@@ -425,7 +464,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
  */
 -(NSArray<NSDictionary *> *)selectFromTable:(NSString *)table{
     [self isHadOpenDatabase];
-
+    
     NSString * sql = [NSString stringWithFormat:@"select * from %@",table];
     //    返回所有用户的字典
     __block NSMutableArray *muArr = [[NSMutableArray alloc]init];
@@ -439,6 +478,63 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
             }
             [muArr addObject:dict];
         }
+        [result close];
+    }];
+    return muArr;
+}
+
+/**
+ * @brief 查询方法,dictionary条件
+ */
+-(NSArray<NSDictionary *> *)selectFromTable:(NSString *)table whereDictionary:(NSDictionary *)dictionary{
+    [self isHadOpenDatabase];
+    for (NSString *key in dictionary.allKeys) {
+        [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+            if (![db tableExists:table]) {
+                NSLog(@"\n\n====================================================\n\n❌❌❌\n执行方法:%s\n该表(%@)不存在数据库中\n\n====================================================\n\n",__FUNCTION__,table);
+                return ;
+            };
+            
+            // 获取字段
+            NSMutableArray *fieldArray = [[NSMutableArray alloc]init];
+            FMResultSet *result = [db executeQuery:[NSString stringWithFormat:@"select * from %@",table]];
+            for (int i=0; i<[result columnCount]; i++) {
+                NSString * columnName = [result columnNameForIndex:i];
+                [fieldArray addObject:columnName];
+            }
+            [result close];
+            
+            
+            if (![db columnExists:key inTableWithName:table]) {
+                NSLog(@"\n\n====================================================\n\n❌❌❌\n执行方法:%s\n请输入正确的字典key,该字段(%@)不存在数据表中,表字段:%@\n❌❌❌\n\n====================================================\n\n",__FUNCTION__,key,fieldArray);
+                return;
+            }
+            
+        }];
+    }
+    if (!dictionary) {
+        NSLog(@"\n\n====================================================\n\n❌执行方法:%s\n请输入字典,key对应表字段,value对应表字段的值\n\n====================================================\n\n",__FUNCTION__);
+        return [NSMutableArray new];
+    }
+    NSMutableString *str = [[NSMutableString alloc]init];
+    for (NSString *key in dictionary.allKeys) {
+        [str appendString:[NSString stringWithFormat:@" %@ = '%@' and",key,dictionary[key]]];
+    }
+    NSString *whereStr = [str substringToIndex:str.length-3];
+    NSString * sql = [NSString stringWithFormat:@"select * from %@ where %@",table,whereStr];
+    //    返回所有用户的字典
+    __block NSMutableArray *muArr = [[NSMutableArray alloc]init];
+    [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet * result = [db executeQuery:sql];
+        while (result.next) {
+            NSMutableDictionary *dict  = [[NSMutableDictionary alloc]init];
+            for (NSString *key in result.columnNameToIndexMap.allKeys) {
+                NSString *valueString = [result stringForColumn:key];
+                [dict setValue:valueString forKey:key];
+            }
+            [muArr addObject:dict];
+        }
+        [result close];
     }];
     return muArr;
 }
@@ -448,7 +544,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
  */
 -(NSArray<NSDictionary *> *)selectFromTable:(NSString *)table range:(NSRange)range{
     [self isHadOpenDatabase];
-
+    
     NSString * sql = [NSString stringWithFormat:@"select * from %@ limit %ld,%ld",table,range.location,range.length];
     //    返回所有用户的字典
     __block NSMutableArray *muArr = [[NSMutableArray alloc]init];
@@ -462,6 +558,7 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
             }
             [muArr addObject:dict];
         }
+        [result close];
     }];
     return muArr;
 }
@@ -499,19 +596,19 @@ static BabyDatabaseHelper *shareDatabaseManager = nil;
  */
 -(BOOL)updateTable:(NSString *)table keyValueDictionary:(NSDictionary *)fieldDictionary whereDictionary:(NSDictionary *)whereDictionary{
     [self isHadOpenDatabase];
-
+    
     NSMutableString *fieldStr = [[NSMutableString alloc]init];
     for (NSString *key in fieldDictionary.allKeys) {
         [fieldStr appendString:[NSString stringWithFormat:@" %@ = '%@',",key,fieldDictionary[key]]];
     }
     NSString *newFieldStr = [fieldStr substringToIndex:fieldStr.length-1];
-
+    
     NSMutableString *str = [[NSMutableString alloc]init];
     for (NSString *key in whereDictionary.allKeys) {
         [str appendString:[NSString stringWithFormat:@" %@ = '%@' and",key,whereDictionary[key]]];
     }
     NSString *whereStr = [str substringToIndex:str.length-3];
-
+    
     NSString *sql = [NSString stringWithFormat:@"update %@ set %@ where %@",table,newFieldStr,whereStr];
     __block BOOL isOK = NO;
     [self.databaseQueue inDatabase:^(FMDatabase * _Nonnull db) {

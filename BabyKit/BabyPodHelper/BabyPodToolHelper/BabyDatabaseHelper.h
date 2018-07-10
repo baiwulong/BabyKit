@@ -9,14 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <FMDB/FMDB.h>
 
+
 /**
  --------------------------------------------------------------
  `BabyDatabaseHelper`,操作数据库类,基于FMDB封装
  ## FMDB主要操作3个类:
-  The three main classes in FMDB are:
-  - `FMDatabase` - Represents a single SQLite database.  Used for executing SQL statements.
-  - `<FMResultSet>` - Represents the results of executing a query on an `FMDatabase`.
-  - `<FMDatabaseQueue>` - If you want to perform queries and updates on multiple threads, you'll want to use this class.
+ The three main classes in FMDB are:
+ - `FMDatabase` - Represents a single SQLite database.  Used for executing SQL statements.
+ - `<FMResultSet>` - Represents the results of executing a query on an `FMDatabase`.
+ - `<FMDatabaseQueue>` - If you want to perform queries and updates on multiple threads, you'll want to use this class.
  --------------------------------------------------------------
  */
 @interface BabyDatabaseHelper : NSObject
@@ -127,6 +128,11 @@ NS_ASSUME_NONNULL_BEGIN
  * @brief 查询方法,range只查询在range范围内的数据,如第1-10条的数据,就NSRangeMake(0,10)
  */
 -(NSArray<NSDictionary *> *)selectFromTable:(NSString *)table range:(NSRange)range;
+
+/**
+ * @brief 查询方法,dictionary条件
+ */
+-(NSArray<NSDictionary *> *)selectFromTable:(NSString *)table whereDictionary:(NSDictionary *)dictionary;
 
 /**
  * @brief 查询第一条数据

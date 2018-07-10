@@ -27,18 +27,18 @@ typedef void(^BabyGuidePageCompleteBlock)(void);
 
 /**
  *  @brief 引导页view创建
-     //HomePage
-     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"isFirstLaunchAPP"]) {
-     [[NSUserDefaults standardUserDefaults] setObject:@"isFirstLaunchAPP" forKey:@"isFirstLaunchAPP"];
-     //引导页图片数组
-     NSArray *images =  @[[UIImage imageNamed:@"image1.jpg"],[UIImage imageNamed:@"image2.jpg"],[UIImage imageNamed:@"image3.jpg"],[UIImage imageNamed:@"image4.jpg"],[UIImage imageNamed:@"image5.jpg"]];
-     //创建引导页视图
-     BabyGuidePageView *pageView = [BabyGuidePageView initWithFrame:self.view.bounds WithImages:images completeBlock:^{
-     NSLog(@"进入app主页");
-     }];
-     //假如是taBabyarcontroller,就添加到taBabyarcontroller.view中,
-     [self.navigationController.view addSubview:pageView];
-     }
+ //HomePage
+ if (![[NSUserDefaults standardUserDefaults] objectForKey:@"isFirstLaunchAPP"]) {
+ [[NSUserDefaults standardUserDefaults] setObject:@"isFirstLaunchAPP" forKey:@"isFirstLaunchAPP"];
+ //引导页图片数组
+ NSArray *images =  @[[UIImage imageNamed:@"image1.jpg"],[UIImage imageNamed:@"image2.jpg"],[UIImage imageNamed:@"image3.jpg"],[UIImage imageNamed:@"image4.jpg"],[UIImage imageNamed:@"image5.jpg"]];
+ //创建引导页视图
+ BabyGuidePageView *pageView = [BabyGuidePageView initWithFrame:self.view.bounds WithImages:images completeBlock:^{
+ NSLog(@"进入app主页");
+ }];
+ //假如是taBabyarcontroller,就添加到taBabyarcontroller.view中,
+ [self.navigationController.view addSubview:pageView];
+ }
  */
 - (instancetype)initWithFrame:(CGRect)frame WithImages:(NSArray *)images completeBlock:(BabyGuidePageCompleteBlock)completeBlock;
 

@@ -72,8 +72,8 @@ s.subspec 'BabyPodHelper' do |pod|
         podUI.source_files = 'BabyKit/BabyPodHelper/BabyPodUIHelper/*.{h,m}'
         podUI.public_header_files = 'BabyKit/BabyPodHelper/BabyPodUIHelper/*.h'
         #UI控件组件
-        podUI.dependency 'MJRefresh', '~> 3.1.15.3'                   #刷新控件
-        podUI.dependency 'MBProgressHUD','~> 1.1.0'                   #提示文本
+        podUI.dependency 'MJRefresh'                                  #刷新控件
+        podUI.dependency 'MBProgressHUD'                              #提示文本
         podUI.dependency 'DZNEmptyDataSet','~> 1.8.1'                 #无网络，无数据等空白页设置
         podUI.dependency 'CRToast', '~> 0.0.9'                        #顶部弹窗提示控件
         podUI.dependency 'JPFPSStatus', '~> 0.1.1'                    #显示在状态栏FPS帧数
@@ -93,7 +93,7 @@ s.subspec 'BabyPodHelper' do |pod|
         #调试或者系统辅助
         podTool.dependency 'CocoaLumberjack', '~> 3.4.1'                  #日志框架
         podTool.dependency 'FBRetainCycleDetector', '~> 0.1.4'            #Facebook开源的自动检测循环引用问题
-        podTool.dependency 'MLeaksFinder', '~> 1.0.0'                     #wechat开源的自动检测内存泄漏
+#        podTool.dependency 'MLeaksFinder', '~> 1.0.0'                     #wechat开源的自动检测内存泄漏
     end
     
 end
