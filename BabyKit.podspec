@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BabyKit'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'BabyKit 一个日常开发实用Objective-C工具包(部分代码参考或直接拷贝第三方框架).依赖多个实用Cocoapod依赖库，旨在快速提升开发效率，在实际开发过程中更加顺畅，没有很高大上的技术，就是单纯为了满足日常基本开发需求。'
 
   s.description      = <<-DESC
